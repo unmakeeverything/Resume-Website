@@ -188,7 +188,8 @@
 
         .contact-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* top-align icon and text */
+            gap: 1rem; /* consistent space between icon and text */
             padding: 1rem 0;
             border-bottom: 1px solid var(--border-light);
             transition: all 0.3s ease;
@@ -196,6 +197,12 @@
 
         .contact-item:last-child {
             border-bottom: none;
+        }
+
+        .contact-item div:last-child {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* centre label/value vertically */
         }
 
         .contact-item:hover {
@@ -213,10 +220,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            flex-shrink: 0; /* prevent icon from shrinking */
+            margin-top: 0.25rem; /* small visual tweak for balance */
             color: white;
             font-size: 1.2rem;
         }
+
 
         /* Buttons */
         .btn-primary {
