@@ -1215,22 +1215,25 @@
 
         // Download resume function
         function downloadResume() {
-            // In a real implementation, this would link to the actual PDF file
-            const link = document.createElement('a');
-            link.href = 'data:application/pdf;base64,'; // This would contain the actual PDF data
-            link.download = 'Bruce_Renner_IT_Infrastructure_Manager_Resume.pdf';
-            
-            // For demonstration purposes, show a professional message
-            const userConfirmed = confirm('Resume download will begin shortly. This would download the actual PDF document in a production environment.');
-            
-            if (userConfirmed) {
-                // In production, you would uncomment the following lines:
-                // document.body.appendChild(link);
-                // link.click();
-                // document.body.removeChild(link);
+            try {
+                // Create download link for the actual PDF file
+                const link = document.createElement('a');
+                link.href = './Bruce_Renner_Resume.pdf';
+                link.download = 'Bruce_Renner_Resume.pdf';
+                link.target = '_blank'; // Open in new tab as fallback
                 
-                // For demo, show success message
+                // Add link to page, click it, then remove it
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Show success notification
                 showNotification('Resume download initiated successfully!', 'success');
+                
+            } catch (error) {
+                // Fallback: open PDF in new window if download fails
+                window.open('./Bruce_Renner_Resume.pdf', '_blank');
+                showNotification('Resume opened in new tab', 'info');
             }
         }
 
@@ -1255,12 +1258,12 @@
             
             document.body.appendChild(notification);
             
-            // Auto remove after 4 seconds
+            // Auto remove after 3 seconds
             setTimeout(() => {
                 if (notification.parentElement) {
                     notification.remove();
                 }
-            }, 4000);
+            }, 3000);
         }
 
         // Smooth scroll for navigation links
