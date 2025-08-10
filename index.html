@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruce Renner - IT Infrastructure Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2563eb;
+            --accent-color: #3b82f6;
+            --success-color: #059669;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-accent: #f1f5f9;
+            --border-light: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .display-1 {
+            font-weight: 700;
+            font-size: 3.5rem;
+            line-height: 1.1;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: var(--shadow-md);
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -20%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(59, 130, 246, 0.1) 100%);
+            transform: skewX(-12deg);
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 90%;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Contact Card */
+        .contact-info-card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item:hover {
+            background: var(--bg-secondary);
+            margin: 0 -1rem;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline-primary {
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: var(--bg-secondary);
+        }
+
+        .skill-card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 2.5rem;
+            height: 100%;
+            border: 1px solid var(--border-light);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .skill-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Experience Section */
+        .experience-card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 0 4px 4px 0;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .company-name {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .position-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .duration {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .reporting-line {
+            background: var(--bg-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .achievement-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievement-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .achievement-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success-color);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--bg-secondary);
+        }
+
+        .contact-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-method {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .contact-method:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-method i {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-method h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-method p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--border-light);
+            border-radius: 50%;
+            border-top-color: var(--secondary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile-First Responsive Design */
+        @media (max-width: 991.98px) {
+            .hero-section {
+                padding: 120px 0 80px;
+                min-height: auto;
+            }
+            
+            .hero-section::before {
+                display: none;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .contact-info-card {
+                margin-top: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Typography adjustments */
+            .display-1 {
+                font-size: 2.75rem;
+                line-height: 1.1;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                max-width: 100%;
+            }
+            
+            .section-title {
+                font-size: 2.25rem;
+                margin-bottom: 1rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 3rem;
+            }
+            
+            /* Navigation improvements */
+            .navbar {
+                padding: 0.75rem 0;
+            }
+            
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
+            
+            .navbar-toggler {
+                border: none;
+                padding: 0.25rem 0.5rem;
+            }
+            
+            .navbar-toggler:focus {
+                box-shadow: none;
+            }
+            
+            .navbar-collapse {
+                margin-top: 1rem;
+                background: var(--bg-primary);
+                border-radius: 12px;
+                padding: 1rem;
+                box-shadow: var(--shadow-md);
+            }
+            
+            .nav-link {
+                padding: 0.75rem 1rem !important;
+                border-bottom: 1px solid var(--border-light);
+            }
+            
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+            
+            /* Hero section mobile optimization */
+            .hero-section {
+                padding: 100px 0 60px;
+                text-align: center;
+            }
+            
+            .professional-badge {
+                display: inline-block;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-stats {
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 1rem;
+                margin-top: 2.5rem;
+                flex-wrap: wrap;
+            }
+            
+            .stat-item {
+                min-width: 80px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+            
+            /* Button adjustments */
+            .btn {
+                width: 100%;
+                margin-bottom: 0.75rem;
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+            }
+            
+            .d-flex.gap-3.flex-wrap {
+                flex-direction: column;
+                gap: 0 !important;
+            }
+            
+            /* Contact info card mobile */
+            .contact-info-card {
+                padding: 2rem 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .contact-item {
+                padding: 1.25rem 0;
+            }
+            
+            .contact-item:hover {
+                margin: 0 -1.5rem;
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .contact-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+            
+            /* Skills section mobile */
+            .skill-card {
+                padding: 2rem 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .skill-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 1.3rem;
+            }
+            
+            .skill-title {
+                font-size: 1.3rem;
+            }
+            
+            /* Experience section mobile */
+            .experience-card {
+                padding: 2rem 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .position-title {
+                font-size: 1.3rem;
+                line-height: 1.3;
+            }
+            
+            .company-name {
+                font-size: 1rem;
+            }
+            
+            .reporting-line {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .achievement-list li {
+                font-size: 0.95rem;
+                line-height: 1.5;
+                margin-bottom: 0.6rem;
+            }
+            
+            /* Contact section mobile */
+            .contact-card {
+                padding: 2.5rem 1.5rem;
+                margin: 0 1rem;
+            }
+            
+            .contact-methods {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 2.5rem 0;
+            }
+            
+            .contact-method {
+                padding: 1.5rem;
+                text-align: center;
+            }
+            
+            .contact-method i {
+                font-size: 1.75rem;
+            }
+            
+            /* Section spacing */
+            .section {
+                padding: 60px 0;
+            }
+            
+            .divider {
+                margin: 0 auto 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* Extra small devices */
+            .display-1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.9rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .stat-item {
+                min-width: auto;
+            }
+            
+            .contact-info-card,
+            .skill-card,
+            .experience-card,
+            .contact-card {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Improve touch targets */
+            .nav-link,
+            .contact-item,
+            .btn {
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .contact-item {
+                justify-content: flex-start;
+            }
+            
+            /* Typography adjustments for very small screens */
+            .hero-description {
+                font-size: 0.95rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .skill-description,
+            .achievement-list li {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            /* Very small devices like iPhone SE */
+            .display-1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .contact-info-card,
+            .skill-card,
+            .experience-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .contact-card {
+                padding: 2rem 1rem;
+            }
+            
+            .hero-section {
+                padding: 90px 0 50px;
+            }
+        }
+
+        /* Landscape mobile optimization */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-section {
+                min-height: auto;
+                padding: 100px 0 40px;
+            }
+            
+            .hero-stats {
+                margin-top: 1.5rem;
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+        }
+
+        /* Tablet specific optimizations */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .hero-section {
+                padding: 120px 0 80px;
+            }
+            
+            .contact-info-card {
+                max-width: 400px;
+                margin: 3rem auto 0;
+            }
+            
+            .skill-card,
+            .experience-card {
+                max-width: none;
+            }
+            
+            .contact-methods {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .contact-methods .contact-method:nth-child(3) {
+                grid-column: 1 / -1;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Subtle animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Corporate professional styling */
+        .professional-badge {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Bruce Renner</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Expertise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="hero-content" data-aos="fade-up" data-aos-duration="800">
+                        <div class="professional-badge">
+                            <i class="fas fa-award me-2"></i>
+                            Senior IT Professional
+                        </div>
+                        <h1 class="display-1 hero-title">Bruce Renner</h1>
+                        <p class="hero-subtitle">IT Infrastructure Manager • Strategic Leadership</p>
+                        <p class="hero-description">
+                            Distinguished IT Infrastructure leader with over 25 years of comprehensive experience in infrastructure management and operational excellence. Proven track record of driving digital transformation initiatives, leading high-performing teams, and delivering strategic technology solutions that enable business growth and competitive advantage.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <button class="btn btn-primary" onclick="scrollToContact()">
+                                <i class="fas fa-envelope me-2"></i>
+                                Schedule Consultation
+                            </button>
+                            <button class="btn btn-outline-primary" onclick="downloadResume()">
+                                <i class="fas fa-download me-2"></i>
+                                Download Resume
+                            </button>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">25+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">150+</span>
+                                <span class="stat-label">Servers Consolidated</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">40%</span>
+                                <span class="stat-label">Downtime Reduction</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="contact-info-card" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                        <h4 class="mb-4 text-center">Professional Contact</h4>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <strong>Direct Line</strong><br>
+                                <span class="text-muted">0477 012 637</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong>Email</strong><br>
+                                <span class="text-muted">info@brucerenner.com.au</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <strong>Location</strong><br>
+                                <span class="text-muted">Bundall, Gold Coast, QLD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Core Competencies</h2>
+                <div class="divider" data-aos="fade-up" data-aos-delay="100"></div>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    Comprehensive expertise across strategic leadership, technical implementation, and operational excellence in enterprise IT environments.
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="skill-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h3 class="skill-title">Strategic Leadership</h3>
+                        <p class="skill-description">
+                            Team leadership and people management • Strategic planning and decision-making • Project and program management • Budgeting and cost optimization • Risk management and mitigation • Policy development and governance • Change management and process improvement • Business continuity planning • Cross-functional collaboration • Vendor and supplier relationship management
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="skill-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="skill-title">Technical Expertise</h3>
+                        <p class="skill-description">
+                            Microsoft Azure (Virtual Machines, Active Directory, Networking) • Amazon Web Services (EC2, VPC, IAM, S3, RDS) • Hybrid cloud architecture and multi-cloud strategies • Infrastructure as a Service (IaaS) and Platform as a Service (PaaS) • Cloud infrastructure design and optimization • Network routing protocols • Enterprise security (firewalls, WAF, DDoS protection) • Zero Trust architecture frameworks
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Professional Experience</h2>
+                <div class="divider" data-aos="fade-up" data-aos-delay="100"></div>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    A proven track record of delivering transformational technology solutions across diverse industry sectors.
+                </p>
+            </div>
+
+            <!-- Current Position -->
+            <div class="experience-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="company-name">Aspire42 | Gold Coast, Queensland</div>
+                <h3 class="position-title">IT Infrastructure Manager</h3>
+                <div class="duration">December 2022 - Present</div>
+                <div class="reporting-line">
+                    <i class="fas fa-sitemap me-2"></i>Reporting to Chief Information Officer (CIO)
+                </div>
+                <p class="mb-3">
+                    Recruited to spearhead infrastructure modernization and lead a team of Systems Administrators and Cloud Engineers. Accountable for resolving complex infrastructure challenges, ensuring regulatory compliance, and strategic technology debt reduction.
+                </p>
+                <ul class="achievement-list">
+                    <li>Orchestrated comprehensive technology debt reduction initiative, consolidating over 150 virtual servers while maintaining business continuity</li>
+                    <li>Led enterprise-wide cloud migration to hybrid Azure and AWS architecture, achieving significant cost optimization and improved scalability</li>
+                    <li>Implemented robust IT governance framework ensuring ISO 27001 compliance and substantially reducing security audit findings</li>
+                    <li>Deployed Arctic Wolf's managed detection and response (MDR) platform, establishing 24/7 security monitoring capabilities</li>
+                    <li>Implemented Microsoft Defender suite across enterprise infrastructure, enhancing security posture through advanced threat protection</li>
+                </ul>
+            </div>
+
+            <!-- Previous Position -->
+            <div class="experience-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="company-name">Aus Electrical Data and Communications | Gold Coast</div>
+                <h3 class="position-title">Head of IT</h3>
+                <div class="duration">2019 - 2022</div>
+                <div class="reporting-line">
+                    <i class="fas fa-sitemap me-2"></i>Reporting to Managing Director
+                </div>
+                <p class="mb-3">
+                    Directed comprehensive IT strategy and operations for a rapidly growing electrical and data communications firm, ensuring technology alignment with business objectives and operational requirements.
+                </p>
+                <ul class="achievement-list">
+                    <li>Executed complete digital transformation to Microsoft 365 and SharePoint, enhancing collaboration across field and office teams</li>
+                    <li>Implemented scalable VoIP and unified communications platform, reducing operational costs by 30%</li>
+                    <li>Established multi-layered cybersecurity framework including endpoint protection, MFA, and comprehensive user training programs</li>
+                    <li>Achieved 40% reduction in system downtime through proactive monitoring and preventative maintenance protocols</li>
+                    <li>Negotiated strategic vendor partnerships, reducing IT operational expenditure by 18% while improving service delivery</li>
+                </ul>
+            </div>
+
+            <!-- Business Owner -->
+            <div class="experience-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="company-name">SmartTech | Brisbane, Queensland</div>
+                <h3 class="position-title">Founder & CEO</h3>
+                <div class="duration">2011 - 2019</div>
+                <p class="mb-3">
+                    Founded and scaled a comprehensive IT services company from startup to national operations, serving clients across Australia and international markets. Successfully exited through acquisition by a global infrastructure leader in 2019.
+                </p>
+                <ul class="achievement-list">
+                    <li>Developed and implemented enterprise-grade security frameworks ensuring client compliance with industry standards (ISO 27001, ITILv3)</li>
+                    <li>Architected scalable IT infrastructure solutions supporting rapid business growth while minimizing operational disruption</li>
+                    <li>Deployed cloud-based automation solutions reducing client operational costs while enhancing efficiency and scalability</li>
+                    <li>Established comprehensive disaster recovery and business continuity frameworks ensuring minimal operational disruption</li>
+                    <li>Implemented AI-driven analytics platforms providing clients with actionable business intelligence and predictive insights</li>
+                </ul>
+            </div>
+
+            <!-- Early Career -->
+            <div class="experience-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="company-name">TechPath | Brisbane, Queensland</div>
+                <h3 class="position-title">Senior Systems Administrator</h3>
+                <div class="duration">2001 - 2011</div>
+                <div class="reporting-line">
+                    <i class="fas fa-sitemap me-2"></i>Reporting to Director
+                </div>
+                <p class="mb-3">
+                    Founding team member instrumental in scaling TechPath from a regional startup to an industry-leading managed service provider, establishing foundational infrastructure and operational excellence standards.
+                </p>
+                <ul class="achievement-list">
+                    <li>Architected and implemented enterprise data center infrastructure supporting both corporate operations and client services</li>
+                    <li>Developed advanced hosted services solutions including VMware virtualization and Citrix application delivery platforms</li>
+                    <li>Established comprehensive training and mentorship programs for technical staff development</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="contact-card" data-aos="zoom-in">
+                        <h2 class="section-title mb-4">Professional Consultation</h2>
+                        <div class="divider"></div>
+                        <p class="lead mb-4">
+                            I welcome the opportunity to discuss how my extensive experience in IT infrastructure management can contribute to your organization's strategic objectives. Please reach out to schedule a confidential consultation.
+                        </p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method" data-aos="fade-up" data-aos-delay="200">
+                                <i class="fas fa-phone"></i>
+                                <h5>Direct Line</h5>
+                                <p>0477 012 637</p>
+                            </div>
+                            <div class="contact-method" data-aos="fade-up" data-aos-delay="400">
+                                <i class="fas fa-envelope"></i>
+                                <h5>Professional Email</h5>
+                                <p>info@brucerenner.com.au</p>
+                            </div>
+                            <div class="contact-method" data-aos="fade-up" data-aos-delay="600">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <h5>Location</h5>
+                                <p>Bundall, Gold Coast, QLD</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <button class="btn btn-primary me-3" onclick="window.location.href='mailto:info@brucerenner.com.au'">
+                                <i class="fas fa-calendar-alt me-2"></i>Schedule Meeting
+                            </button>
+                            <button class="btn btn-outline-primary" onclick="downloadResume()">
+                                <i class="fas fa-file-pdf me-2"></i>Download Resume
+                            </button>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <small class="text-muted">
+                                <i class="fas fa-shield-alt me-2"></i>
+                                Professional references and detailed case studies available upon request
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            easing: 'ease-out'
+        });
+
+        // Loading overlay
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Download resume function
+        function downloadResume() {
+            // In a real implementation, this would link to the actual PDF file
+            const link = document.createElement('a');
+            link.href = 'data:application/pdf;base64,'; // This would contain the actual PDF data
+            link.download = 'Bruce_Renner_IT_Infrastructure_Manager_Resume.pdf';
+            
+            // For demonstration purposes, show a professional message
+            const userConfirmed = confirm('Resume download will begin shortly. This would download the actual PDF document in a production environment.');
+            
+            if (userConfirmed) {
+                // In production, you would uncomment the following lines:
+                // document.body.appendChild(link);
+                // link.click();
+                // document.body.removeChild(link);
+                
+                // For demo, show success message
+                showNotification('Resume download initiated successfully!', 'success');
+            }
+        }
+
+        // Professional notification system
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} position-fixed`;
+            notification.style.cssText = `
+                top: 100px;
+                right: 20px;
+                z-index: 10000;
+                min-width: 300px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+                border-radius: 8px;
+                border: none;
+            `;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'} me-2"></i>
+                ${message}
+                <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 4000);
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Professional typing effect for hero subtitle (subtle)
+        function typeEffect() {
+            const subtitle = document.querySelector('.hero-subtitle');
+            const text = 'IT Infrastructure Manager • Strategic Leadership';
+            let index = 0;
+            
+            subtitle.textContent = '';
+            
+            function type() {
+                if (index < text.length) {
+                    subtitle.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, 50);
+                }
+            }
+            
+            // Start typing effect after page load
+            setTimeout(type, 1500);
+        }
+
+        // Initialize typing effect
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(typeEffect, 1000);
+        });
+
+        // Professional email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Enhanced contact interactions
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const text = this.querySelector('span').textContent;
+                if (text.includes('@')) {
+                    window.location.href = `mailto:${text}`;
+                } else if (text.match(/^\d/)) {
+                    window.location.href = `tel:${text}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
